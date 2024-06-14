@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.kim3.dao.DepositDAO">
+
+    <insert id="insertDeposit" parameterType="kr.co.kim3.deposit.vo.DepositVO">
+        INSERT INTO deposit_saving (dsType, dsName, dsDetail, dsInterest, dsRegdate)
+        VALUES (#{dsType}, #{dsName}, #{dsDetail}, #{dsInterest}, SYSDATE)
+    </insert>
+
+    <select id="selectAllDeposits" resultType="kr.co.kim3.deposit.vo.DepositVO">
+        SELECT * FROM deposit_saving
+    </select>
+    
+    <select id="selectAllProducts" resultType="kr.co.kim3.deposit.vo.DepositVO">
+        SELECT * FROM deposit_saving
+    </select>
+</mapper>

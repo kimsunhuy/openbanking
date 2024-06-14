@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kim3.dao.TransactionDAO">
+
+    <!-- 이체 기록 추가 -->
+    <insert id="insertTransaction" parameterType="transactionVO">
+        INSERT INTO TRANSACTION (tId, tAccount_number, tName, tAmount, tDate, tType)
+        VALUES (#{tId}, #{tAccount_number}, #{tName}, #{tAmount}, SYSDATE, #{tType})
+    </insert>
+
+    <!-- 계좌별 거래 내역 조회 -->
+    <select id="selectTransactionsByAccountNumber" parameterType="string" resultType="transactionVO">
+        SELECT * FROM TRANSACTION WHERE tAccount_number = #{tAccount_number}
+    </select>
+
+    <!-- 전체 거래 내역 조회 -->
+    <select id="selectAllTransactions" resultType="transactionVO">
+        SELECT * FROM TRANSACTION
+    </select>
+
+    <!-- 스케줄된 이체 기록 추가 -->
+    <insert id="insertScheduledTransaction" parameterType="transactionVO">
+        INSERT INTO SCHEDULED_TRANSACTION (stId, stAccount_number, stName, stAmount, stDate, stType, stIntervalDays)
+        VALUES (#{stId}, #{stAccount_number}, #{stName}, #{stAmount}, #{stDate}, #{stType}, #{stIntervalDays})
+    </insert>
+</mapper>

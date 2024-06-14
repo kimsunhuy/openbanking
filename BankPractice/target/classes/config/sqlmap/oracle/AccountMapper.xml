@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kim3.dao.AccountDAO">
+
+    <!-- 계좌 생성 -->
+    <insert id="insertAccount" parameterType="accountVO">
+        INSERT INTO account (acNumber, acClient_id, acName, acPassword, acType, acBalance)
+        VALUES (#{acNumber}, #{acClient_id}, #{acName}, #{acPassword}, #{acType}, #{acBalance})
+    </insert>
+
+    <!-- 계좌 조회 -->
+    <select id="selectAccountsByClientId" parameterType="string" resultType="accountVO">
+        SELECT * FROM account WHERE acClient_id = #{acClient_id}
+    </select>
+
+    <!-- 계좌 업데이트 (잔액) -->
+    <update id="updateAccountBalance" parameterType="accountVO">
+        UPDATE account SET acBalance = #{acBalance} WHERE acNumber = #{acNumber}
+    </update>
+
+    <!-- 계좌 번호로 계좌 조회 -->
+    <select id="selectAccountByNumber" parameterType="string" resultType="accountVO">
+        SELECT * FROM account WHERE acNumber = #{acNumber}
+    </select>
+</mapper>

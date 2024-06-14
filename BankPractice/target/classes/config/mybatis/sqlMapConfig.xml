@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="kr.co.kim3.client.vo.ClientVO" alias="clientVO"/>
+        <typeAlias type="kr.co.kim3.account.vo.AccountVO" alias="accountVO"/>
+        <typeAlias type="kr.co.kim3.transaction.vo.TransactionVO" alias="transactionVO"/>
+        <typeAlias type="kr.co.kim3.deposit.vo.DepositVO" alias="depositVO"/>
+        <typeAlias type="kr.co.kim3.board.vo.BoardVO" alias="boardVO"/>
+    </typeAliases>
+</configuration>

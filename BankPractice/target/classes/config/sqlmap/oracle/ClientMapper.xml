@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.kim3.dao.ClientDAO">
+
+    <!-- 회원 등록 -->
+    <insert id="insertClient" parameterType="clientVO">
+        INSERT INTO client (cId, cName, cPassword, cPhone_num, cBirth, cAdress, cEmail,  cNumber, loginAttempts )
+        VALUES (#{cId}, #{cName}, #{cPassword}, #{cPhone_num}, #{cBirth}, #{cAdress}, #{cEmail}, #{cNumber}, 0 )
+    </insert>
+
+	<select id="checkClientIdExists" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM client WHERE cId = #{cId}
+    </select>
+
+    <!-- 회원 ID로 조회 -->
+    <select id="selectClientById" parameterType="string" resultType="clientVO">
+        SELECT * FROM client WHERE cId = #{cId}
+    </select>
+
+    <!-- 회원 핸드폰 번호로 조회 -->
+    <select id="selectClientByPhoneNum" parameterType="string" resultType="clientVO">
+        SELECT * FROM client WHERE cPhone_num = #{cPhone_num}
+    </select>
+
+    <!-- 회원 이메일로 조회 -->
+    <select id="selectClientByEmail" parameterType="string" resultType="clientVO">
+        SELECT * FROM client WHERE cEmail = #{cEmail}
+    </select>
+
+    <!-- 회원 삭제 -->
+    <update id="deleteClient" parameterType="string">
+        UPDATE client SET cId = CONCAT('DEL_', #{cId}) WHERE cId = #{cId}
+    </update>
+
+    <!-- 로그인 시도 업데이트 -->
+    <update id="updateLoginAttempts" parameterType="clientVO">
+        UPDATE client
+        SET loginAttempts = #{loginAttempts},
+            accountLocked = #{accountLocked}
+        WHERE cId = #{cId}
+    </update>
+
+</mapper>
